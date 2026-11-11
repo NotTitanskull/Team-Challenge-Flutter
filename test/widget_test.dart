@@ -11,10 +11,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:app_dev_flutter/main.dart';
 
 void main() {
-  testWidgets('shows the hello world screen', (WidgetTester tester) async {
+  testWidgets('shows the three tabs', (WidgetTester tester) async {
     await tester.pumpWidget(const HelloWorldApp());
 
-    expect(find.text('Hello World'), findsOneWidget);
-    expect(find.text('Hello, world!'), findsOneWidget);
+    expect(find.text('BMI Calculator'), findsOneWidget);
+    expect(find.text('BMI'), findsOneWidget);
+    expect(find.text('Morse'), findsOneWidget);
+    expect(find.text('Alcohol'), findsOneWidget);
   });
 }

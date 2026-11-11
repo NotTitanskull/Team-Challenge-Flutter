@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'bmi_tab.dart';
+import 'morse_tab.dart';
+import 'alcohol_tab.dart';
 
 void main() {
   runApp(const HelloWorldApp());
@@ -14,23 +17,48 @@ class HelloWorldApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const HelloWorldPage(),
+      home: const HomePage(),
     );
   }
 }
 
-class HelloWorldPage extends StatelessWidget {
-  const HelloWorldPage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-  @override
+  @override 
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  static const List<String> _titles = [
+    'BMI Calculator',
+    'Morse Code Translator',
+    'When Can I Buy Alcohol',
+  ];
+
+  static const List<Widget> _pages = [
+    BmiTab(),
+    MorseTab(),
+    AlcoholTab(),
+  ];
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Hello World')),
-      body: const Center(
-        child: Text(
-          'Hello, world!',
-          style: TextStyle(fontSize: 24),
-        ),
+      appBar: AppBar(title: Text(_titles[_selectedIndex])),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: (index) {
+          setState(() => _selectedIndex = index);
+        },
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.monitor_weight), label: 'BMI'),
+          NavigationDestination(icon: Icon(Icons.more_horiz), label: 'Morse'),
+          NavigationDestination(icon: Icon(Icons.local_bar), label: 'Alcohol'),
+        ],
       ),
     );
   }
