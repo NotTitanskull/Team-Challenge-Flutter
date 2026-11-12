@@ -7,16 +7,16 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-
 import 'package:app_dev_flutter/main.dart';
 
 void main() {
-  testWidgets('shows the three tabs', (WidgetTester tester) async {
+  testWidgets('shows the four tabs', (WidgetTester tester) async {
     await tester.pumpWidget(const HelloWorldApp());
 
     expect(find.text('BMI Calculator'), findsOneWidget);
     expect(find.text('BMI'), findsOneWidget);
     expect(find.text('Morse'), findsOneWidget);
     expect(find.text('Alcohol'), findsOneWidget);
+    expect(find.text('Quiz'), findsOneWidget);
   });
 }
